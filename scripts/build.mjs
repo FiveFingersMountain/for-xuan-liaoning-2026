@@ -17,12 +17,13 @@ await fs.writeFile(path.join(dist,'assets/for-xuan-qr.svg'),await QRCode.toStrin
 const list=[];
 async function walk(dir){for(const e of await fs.readdir(dir,{withFileTypes:true})){const p=path.join(dir,e.name);if(e.isDirectory())await walk(p);else if(!['sw.js'].includes(e.name)&&!e.name.endsWith('.map'))list.push('./'+path.relative(dist,p).split(path.sep).join('/'));}}
 await walk(dist);
-// Install caches each asset independently, so a single optional font cannot block the whole app.
+// The application shell must be complete before a new worker replaces the old one.
 const version='for-xuan-'+Date.now();
-await fs.writeFile(path.join(dist,'sw.js'),`const CACHE=${JSON.stringify(version)}, FILES=${JSON.stringify(['./',...list])};
-self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(async c=>{await Promise.allSettled(FILES.map(f=>c.add(f)));self.skipWaiting()})));
+const core=['./','./index.html','./data.js','./app.js','./paths.js','./diagrams.js','./style.css','./assets/katex/katex.min.js','./assets/katex/katex.min.css','./assets/katex/auto-render.min.js'];
+await fs.writeFile(path.join(dist,'sw.js'),`const CACHE=${JSON.stringify(version)}, CORE=${JSON.stringify(core)}, FILES=${JSON.stringify(list.filter(f=>!core.includes(f)))};
+self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(async c=>{await c.addAll(CORE.map(f=>new Request(new URL(f,self.registration.scope),{cache:'reload'})));await Promise.allSettled(FILES.map(f=>c.add(f)));await self.skipWaiting()})));
 self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('for-xuan-')&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
-self.addEventListener('fetch',e=>{if(e.request.method!=='GET'||new URL(e.request.url).origin!==self.location.origin)return;e.respondWith(fetch(e.request).then(r=>{if(r.ok){const copy=r.clone();caches.open(CACHE).then(c=>c.put(e.request,copy))}return r}).catch(()=>caches.match(e.request).then(r=>r||(e.request.mode==='navigate'?caches.match('./index.html'):Response.error()))))});`);
+self.addEventListener('fetch',e=>{if(e.request.method!=='GET'||new URL(e.request.url).origin!==self.location.origin)return;e.respondWith(caches.open(CACHE).then(async c=>{const cached=await c.match(e.request);if(cached)return cached;try{const r=await fetch(e.request);if(r.ok)e.waitUntil(c.put(e.request,r.clone()));return r}catch{return e.request.mode==='navigate'?(await c.match('./index.html'))||Response.error():Response.error()}}))});`);
 const publish=path.resolve(root,'docs');
 if(publish!==path.resolve(root,'docs')||!publish.startsWith(path.resolve(root)+path.sep)||path.basename(publish)!=='docs')throw Error('Unexpected generated publication directory');
 await fs.rm(publish,{recursive:true,force:true});
