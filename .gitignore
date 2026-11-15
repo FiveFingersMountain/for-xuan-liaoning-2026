@@ -1,0 +1,6 @@
+.private/
+node_modules/
+.artifacts/
+*.log
+*.zip
+.DS_Store

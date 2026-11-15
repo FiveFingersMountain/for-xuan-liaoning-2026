@@ -1,0 +1,219 @@
+[
+  {
+    "id": "ln-2024-ii-03",
+    "year": 2024,
+    "paper": "新课标Ⅱ卷（辽宁适用）",
+    "number": "3",
+    "topic": "平面向量·模与数量积",
+    "title": "模长与垂直条件联立",
+    "stem": "向量 a、b 满足 |a|=1、|a+2b|=2，且 (b−2a)⊥b。求 |b|。",
+    "options": ["A. 1/2", "B. √2/2", "C. √3/2", "D. 1"],
+    "answer": "B，|b|=√2/2。",
+    "steps": [
+      "看到模和垂直，统一转成数量积。设 t=|b|²，c=a·b。",
+      "(b−2a)·b=0，所以 t−2c=0，即 c=t/2。",
+      "将 |a+2b|=2 两边平方：|a|²+4a·b+4|b|²=4，即 1+4c+4t=4。",
+      "代入 c=t/2，得到 1+6t=4，所以 t=1/2；模长非负，故 |b|=√2/2。",
+      "方法卡：模先平方，垂直点乘为零，再联立。不要把 |a+2b| 写成 |a|+2|b|。"
+    ],
+    "url": "https://gaokaohub.com/paper/2024-xinkebiao-ii-math-47346.html",
+    "provenance": "原题，文字等义整理；数据、任务和原选项保留，解析独立编写。",
+    "liaoningEvidence": "https://gaokao.eol.cn/e_html/gk/gkst/2024st.shtml"
+  },
+  {
+    "id": "ln-2024-ii-09",
+    "year": 2024,
+    "paper": "新课标Ⅱ卷（辽宁适用）",
+    "number": "9",
+    "topic": "三角函数·图象性质与相位",
+    "title": "相位改变后哪些性质相同",
+    "stem": "多选题：比较 f(x)=sin(2x) 与 g(x)=sin(2x−π/4)，选出正确结论。",
+    "options": ["A. 两函数有相同零点", "B. 两函数有相同最大值", "C. 两函数有相同最小正周期", "D. 两函数图象有相同对称轴"],
+    "answer": "BC。",
+    "steps": [
+      "先拆参数：两函数的振幅均为 1，角频率均为 2，故最大值均为 1，最小正周期均为 2π/2=π。B、C 正确。",
+      "f 的零点满足 2x=kπ，即 x=kπ/2；g 的零点为 x=π/8+kπ/2（k∈Z）。两组零点不同，A 错误。",
+      "对称轴要让相位等于 π/2+kπ。f 的轴为 x=π/4+kπ/2；g 的轴为 x=3π/8+kπ/2。D 错误。",
+      "g(x)=sin[2(x−π/8)]，表示 f 的图象向右平移 π/8。平移保留振幅和周期，但改变零点和轴的位置。",
+      "背记技巧：看高度找 A，看一圈找 T，看起点找相位；括号内位移先除以角频率。"
+    ],
+    "url": "https://gaokaohub.com/paper/2024-xinkebiao-ii-math-47346.html",
+    "provenance": "原多选题，文字等义整理；保留原函数与选项含义，解析独立编写。",
+    "liaoningEvidence": "https://gaokao.eol.cn/e_html/gk/gkst/2024st.shtml"
+  },
+  {
+    "id": "ln-2024-ii-13",
+    "year": 2024,
+    "paper": "新课标Ⅱ卷（辽宁适用）",
+    "number": "13",
+    "topic": "三角恒等变换·和角与象限",
+    "title": "正切和积已知，求和角正弦",
+    "stem": "α 是第一象限角，β 是第三象限角，并且 tanα+tanβ=4、tanα·tanβ=√2+1。求 sin(α+β)。",
+    "options": [],
+    "answer": "−2√2/3。",
+    "steps": [
+      "设 u=tanα、v=tanβ。由正切和角公式，tan(α+β)=(u+v)/(1−uv)=4/(−√2)=−2√2。",
+      "必须另判符号：第一象限的 sinα、cosα 都为正；第三象限的 sinβ、cosβ 都为负。因此 sin(α+β)=sinαcosβ+cosαsinβ<0。",
+      "利用 sin²θ=tan²θ/(1+tan²θ)，得到 sin²(α+β)=8/9，结合负号得 −2√2/3。",
+      "另一种核算：cosαcosβ=−1/√[(1+u²)(1+v²)]；分母平方=(uv−1)²+(u+v)²=2+16=18，故 sin(α+β)=(u+v)cosαcosβ=−4/√18。",
+      "方法卡：公式给大小，象限给正负；从 tan 求 sin 不能直接开正根。"
+    ],
+    "url": "https://gaokaohub.com/paper/2024-xinkebiao-ii-math-47346.html",
+    "provenance": "原填空题，文字等义整理；数学条件及求值任务不变，解析独立编写。",
+    "liaoningEvidence": "https://gaokao.eol.cn/e_html/gk/gkst/2024st.shtml"
+  },
+  {
+    "id": "ln-2024-ii-16",
+    "year": 2024,
+    "paper": "新课标Ⅱ卷（辽宁适用）",
+    "number": "16",
+    "topic": "导数·切线与极值参数不等式",
+    "title": "先判极值存在，再解参数不等式",
+    "stem": "设 f(x)=e^x−ax−a³。（1）a=1 时，求曲线在 (1,f(1)) 处的切线；（2）要求 f 有极小值，且极小值小于 0，求 a 的范围。",
+    "options": [],
+    "answer": "（1）y=(e−1)x−1；（2）a∈(1,+∞)。",
+    "steps": [
+      "（1）当 a=1 时，f(1)=e−2，f′(x)=e^x−1，切线斜率 f′(1)=e−1。",
+      "用点斜式 y−(e−2)=(e−1)(x−1)，化简得 y=(e−1)x−1。",
+      "（2）一般地 f′(x)=e^x−a。若 a≤0，导数恒正，没有极小值；故必须 a>0。",
+      "a>0 时唯一驻点为 x=ln a，导数在左侧为负、右侧为正，确有极小值 f(ln a)=a−a ln a−a³。",
+      "由于 a>0，极小值小于 0 等价于 a²+ln a−1>0。设 h(a)=a²+ln a−1，则 h′(a)=2a+1/a>0，且 h(1)=0。",
+      "所以所求范围为 a>1。注意 a=1 时极小值恰为 0，应排除。",
+      "方法卡：存在条件→导数变号→极值代回→构造参数函数。只解 f′=0，还不能直接宣称是极小值。"
+    ],
+    "url": "https://gaokaohub.com/paper/2024-xinkebiao-ii-math-47346.html",
+    "provenance": "原解答题，两问保留；文字等义整理，解析独立编写。",
+    "liaoningEvidence": "https://gaokao.eol.cn/e_html/gk/gkst/2024st.shtml"
+  },
+  {
+    "id": "ln-2023-ii-06",
+    "year": 2023,
+    "paper": "新课标Ⅱ卷（辽宁适用）",
+    "number": "6",
+    "topic": "导数·区间单调与参数恒成立",
+    "title": "开区间中的参数最小值",
+    "stem": "f(x)=ae^x−ln x 在 (1,2) 内单调递增。a 的最小值是多少？",
+    "options": ["A. e²", "B. e", "C. e⁻¹", "D. e⁻²"],
+    "answer": "C，a 的最小值为 e⁻¹。",
+    "steps": [
+      "函数在区间内可导。单调递增要求 f′(x)=ae^x−1/x≥0 对每个 x∈(1,2) 成立，即 a≥1/(xe^x)。",
+      "设 h(x)=e^(−x)/x。求导得 h′(x)=−e^(−x)(x+1)/x²<0，所以 h 在 (1,2) 严格递减。",
+      "区间左端虽然没有取到，但当 x→1+ 时 h(x)→e⁻¹，其上确界是 e⁻¹。因此必须 a≥e⁻¹。",
+      "验证临界值：a=e⁻¹ 时，任意 x>1 都有 e^(x−1)>1>1/x，所以 f′(x)>0，确实递增，临界值可以取到。",
+      "方法卡：单调要求变成导数恒成立，再取阈值的上确界。自变量端点不取，不代表参数端点也不能取。"
+    ],
+    "url": "https://gaokaohub.com/paper/2023-xinkebiao-ii-math-36464-test.html",
+    "provenance": "原单选题，文字等义整理；原函数、区间及选项保留，解析独立编写。",
+    "liaoningEvidence": "https://gaokao.eol.cn/e_html/gk/gkst/2023st.shtml"
+  },
+  {
+    "id": "ln-2023-ii-13",
+    "year": 2023,
+    "paper": "新课标Ⅱ卷（辽宁适用）",
+    "number": "13",
+    "topic": "平面向量·模平方消元",
+    "title": "两次平方，消去数量积",
+    "stem": "向量 a、b 满足 |a−b|=√3，并且 |a+b|=|2a−b|。求 |b|。",
+    "options": [],
+    "answer": "√3。",
+    "steps": [
+      "由第二个等式两边平方：|a|²+2a·b+|b|²=4|a|²−4a·b+|b|²。",
+      "整理得 6a·b=3|a|²，即 2a·b=|a|²。",
+      "第一个等式平方：3=|a−b|²=|a|²−2a·b+|b|²。",
+      "代入刚得到的关系，前两项抵消，得到 |b|²=3，所以 |b|=√3。",
+      "方法卡：不必求出每个未知量，先找能在目标式中抵消的组合。"
+    ],
+    "url": "https://gaokaohub.com/paper/2023-xinkebiao-ii-math-36464-test.html",
+    "provenance": "原填空题，文字等义整理；数学条件及任务不变，解析独立编写。",
+    "liaoningEvidence": "https://gaokao.eol.cn/e_html/gk/gkst/2023st.shtml"
+  },
+  {
+    "id": "ln-2021-ii-18",
+    "year": 2021,
+    "paper": "新高考全国Ⅱ卷（辽宁适用）",
+    "number": "18",
+    "topic": "解三角形·边角互化与三角形约束",
+    "title": "连续三边与钝角存在性",
+    "stem": "△ABC 中，A、B、C 的对边依次为 a、b、c，且 b=a+1、c=a+2。（1）若 2sinC=3sinA，求三角形面积；（2）是否有正整数 a 能使三角形为钝角三角形？若有，求出所有这样的 a；若没有，说明理由。",
+    "options": [],
+    "answer": "（1）15√7/4；（2）存在，唯一的正整数值为 a=2。",
+    "steps": [
+      "（1）用正弦定理把 2sinC=3sinA 转成 2c=3a。再代入 c=a+2，得到 a=4，故 b=5、c=6。",
+      "由余弦定理 cosC=(a²+b²−c²)/(2ab)=(16+25−36)/40=1/8。因 C∈(0,π)，sinC=√(1−1/64)=3√7/8。",
+      "面积 S=ab sinC/2=4×5×(3√7/8)/2=15√7/4。",
+      "（2）三边有序 a<a+1<a+2。三角形成立必须 a+(a+1)>a+2，即 a>1。",
+      "最大角是 C。钝角三角形等价于 c²>a²+b²，即 (a+2)²>a²+(a+1)²，化为 (a−3)(a+1)<0。",
+      "与 a>1 取交集得 1<a<3；其中唯一正整数是 2。此时边长为 2、3、4，16>4+9，检验成立。",
+      "方法卡：先保证三角形存在，再看最大边平方；不能只解钝角不等式而漏掉三角形不等式。"
+    ],
+    "url": "https://gaokaohub.com/paper/2021-xinkebiao-ii-math-08338.html",
+    "provenance": "原解答题，保留两问与原数据；文字等义整理，解析独立编写。",
+    "liaoningEvidence": "https://gaokao.eol.cn/e_html/gk/gkst/2021st.shtml"
+  },
+  {
+    "id": "ln-2021-ii-19",
+    "year": 2021,
+    "paper": "新高考全国Ⅱ卷（辽宁适用）",
+    "number": "19",
+    "topic": "空间几何·面面垂直与二面角",
+    "title": "等腰找中点，勾股找垂直",
+    "stem": "四棱锥 Q−ABCD 的底面为按 A、B、C、D 顺序排列的正方形，AD=2，QA=QD=√5，QC=3。（1）证明平面 QAD 与底面 ABCD 垂直；（2）求二面角 B−QD−A 的平面角余弦值。",
+    "options": [],
+    "answer": "（1）成立；（2）2/3。",
+    "steps": [
+      "（1）取 AD 的中点 O。由 QA=QD，得 QO⊥AD；由 QA²−AO²=5−1=4，得 QO=2。",
+      "在正方形底面内，CO²=CD²+DO²=4+1=5；于是 QC²=9=QO²+CO²，得到 QO⊥CO。",
+      "AD 与 CO 是底面内两条相交直线，QO 同时垂直二者，因此 QO⊥平面 ABCD。又 QO 在平面 QAD 内，故平面 QAD⊥平面 ABCD。",
+      "（2）在上述垂直关系建立后取 D=(0,0,0)、A=(2,0,0)、C=(0,2,0)、B=(2,2,0)、Q=(1,0,2)。这些坐标满足全部已知边长。",
+      "棱 QD 的方向向量为 v=(1,0,2)。将 DA=(2,0,0) 和 DB=(2,2,0) 分别去掉沿 v 的分量，得到 u=DA−(DA·v/|v|²)v=(8/5,0,−4/5)，w=DB−(DB·v/|v|²)v=(8/5,2,−4/5)。",
+      "u 与 w 分别在两半平面内并垂直棱 QD，夹角就是所求平面角。u·w=16/5，|u|=4/√5，|w|=6/√5，所以 cosθ=(16/5)/(24/5)=2/3。",
+      "方法卡：等腰的中点线提供一个垂直，勾股逆定理补另一个垂直，再用线面垂直建立坐标系。"
+    ],
+    "url": "https://gaokaohub.com/paper/2021-xinkebiao-ii-math-08338.html",
+    "provenance": "原解答题，题干示意图改为完整文字说明；不增加额外数学假设，解析独立编写。",
+    "liaoningEvidence": "https://gaokao.eol.cn/e_html/gk/gkst/2021st.shtml"
+  },
+  {
+    "id": "ln-2025-ii-08",
+    "year": 2025,
+    "paper": "全国二卷（辽宁适用）",
+    "number": "8",
+    "topic": "三角恒等变换·半角转整角",
+    "title": "半角条件接差角目标",
+    "stem": "已知 0<α<π，cos(α/2)=√5/5。求 sin(α−π/4)。",
+    "options": ["A. √2/10", "B. √2/5", "C. 3√2/10", "D. 7√2/10"],
+    "answer": "D，7√2/10。",
+    "steps": [
+      "已知半角、目标整角，先统一角度：cosα=2cos²(α/2)−1=2/5−1=−3/5。",
+      "0<α<π 保证 sinα>0，故 sinα=√(1−cos²α)=4/5。",
+      "按差角公式展开：sin(α−π/4)=sinα·√2/2−cosα·√2/2。",
+      "代入得到 (4/5+3/5)√2/2=7√2/10。",
+      "方法卡：半角变整角→定符号→差角展开。减去负的 cosα 项应变成加号。"
+    ],
+    "url": "https://app.gaokaozhitongche.com/newsexam/h/5Dd4eElD",
+    "provenance": "原题，文字等义整理；已直接查看该存档原卷第一页图片，核对第8题条件和四个选项。原图：https://img.gaokaozhitongche.com/uploads/img/2025/0617/1750141131764864.jpeg 。解析独立核算。",
+    "liaoningEvidence": "https://gaokao.eol.cn/e_html/gk/gkst/2025st.shtml"
+  },
+  {
+    "id": "ln-2024-ii-06",
+    "year": 2024,
+    "paper": "新课标Ⅱ卷（辽宁适用）",
+    "number": "6",
+    "topic": "函数零点·偶对称与参数",
+    "title": "恰有一个交点，先找偶函数",
+    "stem": "给定 f(x)=a(x+1)²−1、g(x)=cos x+2ax。两条曲线在 x∈(−1,1) 内恰有一个交点，求 a。",
+    "options": ["A. −1", "B. 1/2", "C. 1", "D. 2"],
+    "answer": "D，a=2。",
+    "steps": [
+      "把交点问题转成零点：设 h(x)=f(x)−g(x)=ax²+a−1−cos x。一次项消去后，h 是偶函数。",
+      "区间 (−1,1) 关于原点对称。如果有非零根 x₀，则 −x₀ 也是根，根必成对；恰有一个根，只能是 x=0。",
+      "由 h(0)=a−2=0，得到必要条件 a=2。",
+      "还要检验充分性：a=2 时 h(x)=2x²+1−cos x。因 1−cos x≥0，当 x≠0 时 h(x)>0，而 h(0)=0。",
+      "因此恰好只有一个零点，原曲线恰有一个交点，a=2 确实满足。",
+      "方法卡：恰一个→看对称→锁原点→代入→验证。必要条件得到参数后，不能省掉充分性检验。"
+    ],
+    "url": "https://gaokaohub.com/paper/2024-xinkebiao-ii-math-47346.html",
+    "provenance": "原单选题，文字等义整理；函数、区间及原选项保留，解析独立编写。",
+    "liaoningEvidence": "https://gaokao.eol.cn/e_html/gk/gkst/2024st.shtml"
+  }
+]

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#213d38"><meta name="description" content="For宣 · 从真实错题出发的高中数学学习工作台。辽宁适用高考真题、分层训练与间隔复习。">
+  <title>For宣 · 数学成长工作台</title>
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml"><link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="assets/katex/katex.min.css"><link rel="stylesheet" href="style.css">
+  <script defer src="assets/katex/katex.min.js"></script><script defer src="assets/katex/auto-render.min.js"></script>
+  <script defer src="data.js"></script><script defer src="diagrams.js"></script><script defer src="app.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">跳到学习内容</a>
+<aside class="sidebar">
+  <a class="brand" href="#home" aria-label="For宣 首页"><span class="brand-icon">宣</span><span>For<span class="serif">宣</span><small>数学成长工作台</small></span></a>
+  <div class="side-label">LEARN, THEN GROW</div>
+  <nav aria-label="主导航">
+    <a href="#home" data-nav="home"><span>⌂</span>今日学习</a>
+    <a href="#map" data-nav="map"><span>◇</span>知识地图</a>
+    <a href="#cases" data-nav="cases"><span>▤</span>错题研究室</a>
+    <a href="#practice" data-nav="practice"><span>✎</span>分层训练</a>
+    <a href="#lab" data-nav="lab"><span>∿</span>数学实验室</a>
+    <a href="#review" data-nav="review"><span>↻</span>复习与成长</a>
+    <a href="#guide" data-nav="guide"><span>☷</span>使用与来源</a>
+  </nav>
+  <div class="side-note"><span class="dot"></span> 每次 25 分钟，走稳一步<p>先说清为什么，<br>再把答案算对。</p></div>
+  <a class="mobile-entry" href="#phone">↗ 手机接着学</a>
+</aside>
+<div class="workspace">
+  <header class="topbar"><div><span class="eyebrow">FOR XUAN / MATH STUDIO</span><p id="top-title">今天，也比昨天更明白一点。</p></div><a href="#review" class="progress-chip" id="top-progress">成长记录</a></header>
+  <main id="main" tabindex="-1"></main>
+  <footer>For宣 <span>·</span> 理解有路径，进步有证据。<a href="#guide">课程说明与题目来源</a></footer>
+</div>
+<div id="toast" role="status" aria-live="polite"></div>
+<script>if(location.protocol==='https:'&&'serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));</script>
+</body></html>

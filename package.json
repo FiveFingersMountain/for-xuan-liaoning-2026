@@ -1,0 +1,15 @@
+{
+  "name": "for-xuan-liaoning-2026",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "check": "node scripts/check.mjs",
+    "serve": "node scripts/serve.mjs"
+  },
+  "devDependencies": {
+    "katex": "0.19.1",
+    "qrcode": "1.5.4"
+  }
+}

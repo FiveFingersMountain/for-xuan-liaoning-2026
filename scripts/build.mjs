@@ -1,0 +1,32 @@
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import QRCode from 'qrcode';
+const root=process.cwd();
+const dist=path.join(root,'dist');
+const vendor=path.resolve(dist,'assets/katex');
+if(vendor!==path.resolve(root,'dist/assets/katex')||!vendor.startsWith(path.resolve(root)+path.sep))throw Error('Unexpected generated vendor directory');
+await fs.rm(vendor,{recursive:true,force:true});
+await fs.mkdir(vendor,{recursive:true});
+for(const file of ['katex.min.js','katex.min.css'])await fs.copyFile(path.join(root,'node_modules/katex/dist',file),path.join(vendor,file));
+await fs.cp(path.join(root,'node_modules/katex/dist/fonts'),path.join(vendor,'fonts'),{recursive:true});
+await fs.copyFile(path.join(root,'node_modules/katex/LICENSE'),path.join(vendor,'LICENSE'));
+await fs.copyFile(path.join(root,'node_modules/katex/dist/contrib/auto-render.min.js'),path.join(dist,'assets/katex/auto-render.min.js'));
+const url='https://fivefingersmountain.github.io/for-xuan-liaoning-2026/';
+await QRCode.toFile(path.join(dist,'assets/for-xuan-qr.png'),url,{width:640,margin:4,errorCorrectionLevel:'M',color:{dark:'#213d38',light:'#ffffff'}});
+await fs.writeFile(path.join(dist,'assets/for-xuan-qr.svg'),await QRCode.toString(url,{type:'svg',margin:4,errorCorrectionLevel:'M',color:{dark:'#213d38',light:'#ffffff'}}));
+const list=[];
+async function walk(dir){for(const e of await fs.readdir(dir,{withFileTypes:true})){const p=path.join(dir,e.name);if(e.isDirectory())await walk(p);else if(!['sw.js'].includes(e.name)&&!e.name.endsWith('.map'))list.push('./'+path.relative(dist,p).split(path.sep).join('/'));}}
+await walk(dist);
+// Install caches each asset independently, so a single optional font cannot block the whole app.
+const version='for-xuan-'+Date.now();
+await fs.writeFile(path.join(dist,'sw.js'),`const CACHE=${JSON.stringify(version)}, FILES=${JSON.stringify(['./',...list])};
+self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(async c=>{await Promise.allSettled(FILES.map(f=>c.add(f)));self.skipWaiting()})));
+self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('for-xuan-')&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
+self.addEventListener('fetch',e=>{if(e.request.method!=='GET'||new URL(e.request.url).origin!==self.location.origin)return;e.respondWith(fetch(e.request).then(r=>{if(r.ok){const copy=r.clone();caches.open(CACHE).then(c=>c.put(e.request,copy))}return r}).catch(()=>caches.match(e.request).then(r=>r||(e.request.mode==='navigate'?caches.match('./index.html'):Response.error()))))});`);
+const publish=path.resolve(root,'docs');
+if(publish!==path.resolve(root,'docs')||!publish.startsWith(path.resolve(root)+path.sep)||path.basename(publish)!=='docs')throw Error('Unexpected generated publication directory');
+await fs.rm(publish,{recursive:true,force:true});
+await fs.mkdir(publish,{recursive:true});
+await fs.cp(dist,publish,{recursive:true});
+await fs.writeFile(path.join(root,'docs/.nojekyll'),'');
+console.log('Built GitHub Pages /docs; QR target: '+url);
