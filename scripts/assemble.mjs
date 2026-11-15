@@ -1,5 +1,6 @@
 import fs from 'node:fs/promises';
 import {topics,rootCases,variants} from './content.mjs';
+import {paths,pathQuestions} from './course-content.mjs';
 const gaokao=JSON.parse(await fs.readFile('research/gaokao-sources.json','utf8'));
 const advanced=JSON.parse(await fs.readFile('.private/advanced-solutions.json','utf8'));
 const meta=[['c383-rec','sequence','隐式递推：先证区间不变','原图可见分支讨论与批注；先保留已建立的正确关系。'],['c383-triangle','triangle','正弦换边，中线定尺度','原题条件与四个选项清楚，不能凭照片给整章能力下结论。'],['c383-space','space','折叠之后识别正四面体','原图含完整折叠示意；公开页用数学文字重建，不展示手写照片。'],['c385-composite','zeros','复合零点：两层原像树','分段边界、顶点高度可读；先分层计数，再检查临界值。'],['c385-log','function','对数恒成立：底数与端点','照片中有代数尝试；底数分类和闭区间端点需要分别核对。'],['c385-shift','trig','先化单一三角函数，再比较轴族','原式和左移条件可辨认，必须区分相位与位移。'],['c386-hard','derivative','双极值：存在、唯一、随参单调','原图已有正确求导和二次式换元；提升重点是后续论证链。'],['c382-tangent','derivative','切点参数与固定零点','三问完整可读，包含两条切线、根式估界与固定零点。']];
@@ -10,7 +11,7 @@ const topicFor=q=>/向量/.test(q.topic)?'vector':/三角形/.test(q.topic)?'tri
 const tests=gaokao.map(q=>{const opts=q.options.map(x=>x.replace(/^[A-D][.．、]\s*/,''));const letters=q.answer.match(/^([A-D]+)[，。]/)?.[1];return {...q,topic:topicFor(q),sourceTopic:q.topic,options:opts,type:opts.length&&letters?(letters.length>1?'multi':'choice'):'written',correct:letters?[...letters].map(c=>'ABCD'.indexOf(c)):[],group:'gaokao',origin:`${q.year} · ${q.paper} · 第${q.number}题`,level:/16|18|19/.test(q.number)?3:2,related:q.id,rubric:['已完成题目要求的各小问，第一步的模型与条件正确','关键计算与推理完整','答案、定义域及端点检查正确']};});
 const caseTests=cases.map(c=>({...c,id:'test-'+c.id,related:c.id,group:'case',origin:'错题回测 · 照片 '+c.photo,type:'written',level:3,rubric:['已完成题目要求的各小问，未看解析独立写出关键转换','关键推导有依据，未跳过存在与范围','最终答案及端点 / 符号正确']}));
 const inventory=Array.from({length:24},(_,i)=>{const photo=String(i+371);return {photo,topics:[...new Set(cases.filter(c=>c.photo===photo).map(c=>c.topic))],status:photo==='384'||photo==='388'||photo==='391'?'含裁切题，部分不收录':'已查看',note:({'384':'侧转页；部分选项与底部几何图不完整，不对缺失项判分。','387':'下方图象选择项裁切，仅收录完整向量题。','388':'上半页部分任务在右边裁切，只收录完整乘积恒非负题。','389':'最上方第8题题干不全，未编入训练。','391':'下方三角形题选项缺失，暂不判分。','392':'参数导数综合题已独立推导；区分必要条件、边界函数与参数充分性。','393':'本页为倒数递推、三角周期及数列综合；收录第12、13题，未把它误归为另一张导数题。','394':'完整抽象函数题，首版只抽取可完整证明的子任务。'})[photo]||'阅读过不等于判定全页均做错；只将清晰、可独立验算的任务编入首版。'};});
-const payload={version:1,student:'宣',siteUrl:'https://fivefingersmountain.github.io/for-xuan-liaoning-2026/',topics,cases,questions:[...variants,...tests,...caseTests],inventory,gaokaoCount:tests.length,updated:'2026-11-15'};
+const payload={version:2,student:'宣',siteUrl:'https://fivefingersmountain.github.io/for-xuan-liaoning-2026/',topics,cases,questions:[...variants,...pathQuestions,...tests,...caseTests],paths,inventory,gaokaoCount:tests.length,updated:'2026-11-15'};
 await fs.writeFile('dist/data.js','window.COURSE='+JSON.stringify(payload,null,2)+';\n');
 await fs.writeFile('.private/inventory-summary.json',JSON.stringify(inventory,null,2));
 console.log(JSON.stringify({cases:cases.length,questions:payload.questions.length,photos:inventory.length,gaokao:tests.length}));

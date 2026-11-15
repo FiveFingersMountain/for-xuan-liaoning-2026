@@ -4,6 +4,15 @@ assert.equal(d.inventory.length,24);assert.equal(new Set(d.cases.map(c=>c.id)).s
 for(const c of d.cases){assert.ok(d.topics.some(t=>t.id===c.topic),c.id+' topic');assert.ok(c.steps.length>=2,c.id+' solution');assert.ok(c.answer&&c.stem&&c.evidence,c.id+' complete');}
 for(const q of d.questions){assert.ok(d.topics.some(t=>t.id===q.topic),q.id+' topic');assert.ok(q.steps?.length>=1,q.id+' steps');if(q.type!=='written'){assert.ok(q.options.length===4,q.id+' options');assert.ok(q.correct.length>0&&q.correct.every(i=>i>=0&&i<4),q.id+' key');assert.equal(q.type,q.correct.length>1?'multi':'choice',q.id+' multiselect');}if(q.group==='gaokao'){assert.match(q.url,/^https:\/\//);assert.match(q.liaoningEvidence,/eol.cn/);assert.ok(q.provenance.includes('原'),q.id+' provenance');}}
 const near=(a,b,t=1e-9)=>assert.ok(Math.abs(a-b)<t,`${a} != ${b}`);
+assert.equal(d.paths.length,8);
+for(const c of d.paths){for(const id of [c.warmup,c.exit,c.transfer])assert.ok(d.questions.some(q=>q.id===id),c.id+' reference '+id);const ex=d.cases.find(q=>q.id===c.example)||d.questions.find(q=>q.id===c.example);assert.ok(ex?.steps.length>0,c.id+' worked example');assert.ok(d.questions.find(q=>q.id===c.exit).related===(ex.related||ex.id),c.id+' shared source exposure');assert.ok(c.checks.length===3&&c.coach.length===3);}
+// Course variants: verify formulas and edge cases independently of displayed answer letters.
+for(let i=-20;i<=20;i++){const x=i/7+Math.PI/8;near(Math.sin(x)**2+Math.sin(x)*Math.cos(x),.5+Math.SQRT1_2*Math.sin(2*(x-Math.PI/8)));}
+near(4+2*2+2,10);near((9+4-17)/12,-1/3);near(3*Math.sqrt(1-1/9),2*Math.sqrt(2));near(1/Math.sqrt(1+3),.5);
+for(const x of [.00001,.1,.5,.99999])assert.ok(Math.log(2+x)/Math.log(2)>1);assert.ok(Math.log(2.001)/Math.log(2.01)<1);
+for(const x of [-5,5])near(Math.abs(Math.abs(x)-2)-2,1);
+for(let maskA=0;maskA<64;maskA++)for(let maskB=0;maskB<64;maskB++){let a=0,b=0;for(let j=0;j<6;j++){if((maskA>>j&1)&&!(maskB>>j&1))a+=4**j;if((maskB>>j&1)&&!(maskA>>j&1))b+=4**j;}if(a>=b)assert.ok(a>=3*b);}
+assert.ok(16<4*(1+4));
 // Independent checks from original mathematical constraints, rather than copying an answer key.
 const a=6,b=2*Math.sqrt(6),c=2;near((b*b+c*c-a*a)/(2*b*c),-Math.sqrt(6)/6);near((2*b*b+2*c*c-a*a)/4,5);
 near(Math.sin(2*Math.acos(1/Math.sqrt(5))-Math.PI/4),7*Math.sqrt(2)/10);

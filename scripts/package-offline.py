@@ -4,7 +4,7 @@ root = Path(__file__).resolve().parent.parent
 dist = root / 'dist'
 out = root.parent / 'output'
 out.mkdir(exist_ok=True)
-target = out / 'For宣-免安装学习包-v1.zip'
+target = out / 'For宣-免安装学习包-v2.zip'
 with ZipFile(target, 'w', ZIP_DEFLATED) as z:
     for file in sorted(dist.rglob('*')):
         if file.is_file():
